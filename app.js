@@ -1,36 +1,20 @@
-import React, { useState } from 'react';
-import './App.css';
+const express = require('express');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const apiRoutes = require('./routes/api');
 
-function App() {
-      const [text, setText] = useState('');
-        const [result, setResult] = useState('');
+const app = express();
+const PORT = process.env.PORT || 5000;
 
-          const analyzeText = async () => {
-                const response = await fetch('/api/analyze', {
-                          method: 'POST',
-                                headers: { 'Content-Type': 'application/json' },
-                                      body: JSON.stringify({ text }),
-                });
-                    const data = await response.json();
-                        setResult(data.result);
-          };
+// Middlewares
+app.use(bodyParser.json());
 
-            return (
-                    <div className="App">
-                          <input
-                                  type="text"
-                                          value={text}
-                                                  onChange={(e) => setText(e.target.value)}
-                                                          placeholder="Enter text to analyze"
-                                                                />
-                                                                      <button onClick={analyzeText}>Analyze</button>
-                                                                            <p>Result: {result}</p>
-                                                                                </div>
-            );
-}
+// Connect to MongoDB
+mongoose.connect('your_mongodb_connection_string', { useNewUrlParser: true, useUnifiedTopology: true });
 
-export default App;
-            )
-                })
-          }
-}
+// Routes
+app.use('/api', apiRoutes);
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+  });
