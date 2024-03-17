@@ -1,0 +1,27 @@
+sentiment-analysis-app/
+│
+├── client/ (Front-end)
+│   ├── public/
+│   │   ├── index.html
+│   │   └── favicon.ico
+│   ├── src/
+│   │   ├── App.js
+│   │   ├── index.js
+│   │   └── styles.css
+│   └── package.json
+│
+├── server/ (Back-end)
+│   ├── database/
+│   │   └── db.js
+│   ├── models/
+│   │   └── sentimentModel.js
+│   ├── routes/
+│   │   └── api.js
+│   ├── app.js
+│   └── package.json
+│
+├── model/ (Machine Learning)
+│   └── sentiment_analysis_model/
+│       └── model.py
+│
+└── README.md
